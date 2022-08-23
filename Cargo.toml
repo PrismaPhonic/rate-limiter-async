@@ -1,0 +1,19 @@
+[package]
+name = "rate-limiter"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.bench]
+debug = true
+
+[dependencies]
+crossfire = "0.1.7"
+futures = "0.3.23"
+tokio = { version = "1.18", features = ["signal", "rt-multi-thread", "time",
+"sync", "macros"] }
+
+[target.x86_64-unknown-linux-gnu]
+linker = "/usr/bin/clang"
+rustflags = ["-Clink-arg=-fuse-ld=lld", "-Clink-arg=-Wl,--no-rosegment"]
